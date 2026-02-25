@@ -36,4 +36,4 @@ jobs:
           docker push $REPO_NAME:latest
           echo "docker build, tag, and push commands are implemented"
           # echo "docker build, tag, and push commands not implemented"
-          exit 1
+          # exit 1
