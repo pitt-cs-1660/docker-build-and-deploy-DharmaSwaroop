@@ -5,9 +5,9 @@ on:
     branches: [main]
 
 env:
-  ACCOUNT_ID: "" # set your aws account id
-  REGION: "" # set your aws region (e.g., us-east-1)
-  REPO_NAME: "" # set your ecr repository name
+  ACCOUNT_ID: ${{ vars.ACCOUNT_ID }} # set your aws account id
+  REGION: ${{ vars.REGION }} # set your aws region (e.g., us-east-1)
+  REPO_NAME: ${{ vars.REPO_NAME }} # set your ecr repository name
 
 jobs:
   build-and-push:
@@ -31,5 +31,9 @@ jobs:
         run: |
           # todo: replace this step with your docker build, tag, and push commands
           # refer to docs/docker-commands.md for guidance on the required commands
-          echo "docker build, tag, and push commands not implemented"
+          docker build -t $REPO_NAME:latest .
+          docker tag $REPO_NAME:latest $REPO_NAME:latest
+          docker push $REPO_NAME:latest
+          echo "docker build, tag, and push commands are implemented"
+          # echo "docker build, tag, and push commands not implemented"
           exit 1
